@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Single React SPA</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <meta name="importmap-type" content="systemjs-importmap" />
+  <style>
+    :root {
+      --navHeight: 60px;
+    }
+
+    body {
+      padding-top: var(--navHeight);
+      margin: 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #152662;
+      font-size: 18px;
+      font-weight: bold;
+      height: var(--navHeight);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #00bcd4;
+      text-decoration: underline;
+    }
+  </style>
+  <% if (isLocal) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@latest/lib/system/single-spa.min.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"
+        }
+      }
+    </script>
+    <% } %>
+      <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@latest/lib/system/single-spa.min.js"
+        as="script">
+      <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@org/root-config": "http://localhost:9000/org-root-config.js",
+        "@ant/react-app1": "http://localhost:3000/ant-react-app.js",
+        "@ant/react-app2": "http://localhost:3001/ant-react-app.js"
+      }
+    }
+  </script>
+      <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <a onclick="singleSpaNavigate('/react1')"> React app1</a>
+    <a onclick="singleSpaNavigate('/react2')"> React app2</a>
+  </div>
+
+  <script>
+    System.import('@org/root-config');
+  </script>
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+
+</html>

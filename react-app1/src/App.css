@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ccc;
+}
+.menu {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+  border-right: 1px solid #ccc;
+  text-align: center;
+}
+.selected {
+  color: #00bcd4;
+}

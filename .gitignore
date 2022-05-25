@@ -4,6 +4,7 @@ bootstrap.js
 bootstrap.json
 bootstrap.jsonp
 build/
+dist/
 classic.json
 classic.jsonp
 ext/
@@ -12,3 +13,6 @@ modern.jsonp
 resources/sass/.sass-cache/
 resources/.arch-internal-preview.css
 .arch-internal-preview.css
+package-lock.json
+yarn.lock
+node_modules
